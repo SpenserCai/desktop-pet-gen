@@ -1,0 +1,77 @@
+{
+  "pet_name": "pet",
+  "body_type": "humanoid",
+  "frame_size": 256,
+  "actions": {
+    "idle": {
+      "file": "idle_sheet.png",
+      "frame_count": 2,
+      "fps": 12,
+      "loop": true,
+      "duration_secs": 3.0
+    },
+    "happy": {
+      "file": "happy_sheet.png",
+      "frame_count": 2,
+      "fps": 12,
+      "loop": true,
+      "duration_secs": 1.5
+    },
+    "sleepy": {
+      "file": "sleepy_sheet.png",
+      "frame_count": 2,
+      "fps": 8,
+      "loop": true,
+      "duration_secs": 3.0
+    },
+    "hungry": {
+      "file": "hungry_sheet.png",
+      "frame_count": 2,
+      "fps": 12,
+      "loop": true,
+      "duration_secs": 2.0
+    },
+    "dance": {
+      "file": "dance_sheet.png",
+      "frame_count": 2,
+      "fps": 12,
+      "loop": true,
+      "duration_secs": 3.0
+    },
+    "sleep": {
+      "file": "sleep_sheet.png",
+      "frame_count": 2,
+      "fps": 8,
+      "loop": true,
+      "duration_secs": 4.0
+    },
+    "wave": {
+      "file": "wave_sheet.png",
+      "frame_count": 2,
+      "fps": 12,
+      "loop": false,
+      "duration_secs": 2.0
+    },
+    "yawn": {
+      "file": "yawn_sheet.png",
+      "frame_count": 2,
+      "fps": 12,
+      "loop": false,
+      "duration_secs": 2.0
+    },
+    "stretch": {
+      "file": "stretch_sheet.png",
+      "frame_count": 2,
+      "fps": 12,
+      "loop": false,
+      "duration_secs": 2.0
+    },
+    "look_around": {
+      "file": "look_around_sheet.png",
+      "frame_count": 2,
+      "fps": 12,
+      "loop": true,
+      "duration_secs": 2.5
+    }
+  }
+}

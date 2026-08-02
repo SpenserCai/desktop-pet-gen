@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 安全漏洞报告
+    url: https://github.com/SpenserCai/desktop-pet-gen/security/advisories/new
+    about: 安全问题请走私密渠道，不要开公开 issue（见 SECURITY.md）
+  - name: 使用问题与讨论
+    url: https://github.com/SpenserCai/desktop-pet-gen/discussions
+    about: 用法咨询、经验分享、想法征集请在 Discussions 提出

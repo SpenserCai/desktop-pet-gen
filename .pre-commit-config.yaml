@@ -1,0 +1,47 @@
+# 提交前自动检查（与 CI 保持一致的子集）。
+# 启用：pip install pre-commit && pre-commit install
+# 全量跑一次：pre-commit run --all-files
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        exclude: \.md$
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: detect-private-key
+      - id: check-added-large-files
+        # 夹具里最大的单个 PNG 约 500 KB；ONNX 权重不入库
+        args: [--maxkb=1024]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.1
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: cargo-fmt
+        name: cargo fmt (pet-runtime)
+        entry: bash -c 'cd pet-runtime && cargo fmt --check'
+        language: system
+        files: ^pet-runtime/.*\.rs$
+        pass_filenames: false
+
+      - id: shell-multibyte-var
+        name: shell 变量紧跟非 ASCII 字符须用 ${var}
+        # macOS 自带 bash 3.2 会把紧随 $var 的多字节字节并入变量名，
+        # set -u 下变成 unbound variable 并静默退出。
+        entry: >
+          bash -c 'if grep -nP "\$[A-Za-z_][A-Za-z0-9_]*(?=[^\x00-\x7f])" scripts/*.sh;
+          then echo "请改用 \${var} 形式"; exit 1; fi'
+        language: system
+        files: ^scripts/.*\.sh$
+        pass_filenames: false

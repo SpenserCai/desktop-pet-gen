@@ -1,0 +1,78 @@
+name: 缺陷报告 / Bug report
+description: 报告一个可复现的问题
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。请尽量提供可复现的信息 —— 缺少复现步骤的问题往往只能被关闭。
+        **安全问题请不要在这里提交**，请按 SECURITY.md 私下报告。
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 出问题的部分
+      options:
+        - 生成管线（Python，Stage 0-6）
+        - Rust 项目生成（Stage 7 / 跨语言契约）
+        - 桌宠运行时（窗口、拖动、菜单、动画）
+        - 模型下载（scripts/fetch_models.py）
+        - 测试 / CI
+        - 文档
+        - 其他 / 不确定
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 实际现象
+      description: 发生了什么？与你的预期有何不同？
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 执行 `pet-gen -i xxx.png -n mypet --skip-video`
+        2. ...
+        3. 观察到 ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志 / 报错
+      description: |
+        运行时问题请附 `RUST_LOG=info ./<pet> 2>&1 | tail -50`；
+        管线问题请附相关阶段的日志。**请先自行确认日志中不含凭据。**
+      render: shell
+
+  - type: input
+    id: version
+    attributes:
+      label: 版本 / commit
+      placeholder: "v0.1.0 或 git commit hash"
+    validations:
+      required: true
+
+  - type: input
+    id: env
+    attributes:
+      label: 运行环境
+      placeholder: "macOS 15.3 (Apple Silicon) / Python 3.12.11 / rustc 1.95"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已搜索过现有 issue，没有重复
+          required: true
+        - label: 我确认日志与截图中不含 API Key 或其他凭据
+          required: true

@@ -1,0 +1,19 @@
+# .gitignore — 桌面宠物运行时（模板，会被生成器复制进每个生成项目）
+#
+# 生成项目是独立的 Rust 二进制 crate，`cargo build --release` 的 target/
+# 轻易超过 1 GB，务必不要入库。
+#
+# 说明：Cargo.lock 故意**不**忽略——二进制 crate 锁定依赖才能复现构建。
+
+target/
+**/*.rs.bk
+*.pdb
+!Cargo.lock
+
+# macOS / 编辑器
+.DS_Store
+._*
+.idea/
+.vscode/
+*.swp
+*~

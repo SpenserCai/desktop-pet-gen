@@ -1,0 +1,88 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "desktop-pet-gen"
+version = "0.1.0"
+description = "Turn a single image into an animated cross-platform desktop pet, via an AI pipeline and a Rust/Bevy runtime"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "SpenserCai", email = "spensercai@gmail.com" }]
+keywords = [
+    "desktop-pet",
+    "sprite-animation",
+    "ai-pipeline",
+    "bevy",
+    "code-generation",
+    "background-removal",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Rust",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Software Development :: Code Generators",
+]
+
+dependencies = [
+    "openai>=2.35.0",
+    "Pillow>=10.0",
+    "onnxruntime>=1.17",
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.4",
+    "pre-commit>=3.7",
+]
+
+[project.urls]
+Homepage = "https://github.com/SpenserCai/desktop-pet-gen"
+Repository = "https://github.com/SpenserCai/desktop-pet-gen"
+Issues = "https://github.com/SpenserCai/desktop-pet-gen/issues"
+Changelog = "https://github.com/SpenserCai/desktop-pet-gen/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/SpenserCai/desktop-pet-gen/blob/main/docs/README.md"
+
+[project.scripts]
+pet-gen = "pet_generator.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pet_generator"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "B", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+# 测试里允许 assert 与稍长的合成表达式
+"tests/**" = ["E501"]
+# 提示词 Schema 是发给 LLM 的字面文本，换行会改变语义
+"pet_generator/config/classifier_config.py" = ["E501"]
+# 契约锁定注释必须与 Rust 模板逐字节一致（见 docs/standards/GENERATOR_RUNTIME_CONTRACT.md）
+"pet_generator/runtime_gen/rust_project.py" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# 让 `pet_generator` 可导入而无需 sys.path hack 或 editable install
+pythonpath = ["."]
+addopts = "-ra --strict-markers"
+markers = [
+    "slow: 耗时用例（真实素材过管线、端到端回放）",
+    "gui: 需要图形会话或 cargo 构建，CI 默认跳过",
+]

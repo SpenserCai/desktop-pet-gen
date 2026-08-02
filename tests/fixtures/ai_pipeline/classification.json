@@ -1,0 +1,22 @@
+{
+  "subject_category": "non_living",
+  "body_type": "humanoid",
+  "input_material": "photo_figure",
+  "style_target": "chibi_anime",
+  "key_features": [
+    "粉色短发",
+    "黑色带金色装饰的连衣裙",
+    "黑色发饰",
+    "大笑的眯眼表情",
+    "白色连裤袜与黑色小皮鞋"
+  ],
+  "color_palette": [
+    "#F48BA6",
+    "#2B2B2B",
+    "#C5A059",
+    "#FFFFFF"
+  ],
+  "confidence": 0.99,
+  "reasoning": "图片展示的是一个动漫角色（阿尼亚）的手办模型，具有双足直立的人形特征，属于手办照片，风格为Q版动漫。",
+  "raw_response": "{\"subject_category\": \"non_living\", \"body_type\": \"humanoid\", \"input_material\": \"photo_figure\", \"style_target\": \"chibi_anime\", \"key_features\": [\"粉色短发\", \"黑色带金色装饰的连衣裙\", \"黑色发饰\", \"大笑的眯眼表情\", \"白色连裤袜与黑色小皮鞋\"], \"color_palette\": [\"#F48BA6\", \"#2B2B2B\", \"#C5A059\", \"#FFFFFF\"], \"confidence\": 0.99, \"reasoning\": \"图片展示的是一个动漫角色（阿尼亚）的手办模型，具有双足直立的人形特征，属于手办照片，风格为Q版动漫。\"}"
+}

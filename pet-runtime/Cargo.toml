@@ -1,0 +1,32 @@
+[package]
+name = "desktop-pet"
+version = "0.1.0"
+edition = "2021"
+description = "Transparent always-on-top desktop pet with data-driven sprite animations"
+license = "MIT"
+publish = false
+
+# 生成的宠物项目是独立 crate，不属于任何外层 workspace。
+[workspace]
+
+[dependencies]
+bevy = "0.18"
+image = "0.25"
+
+# --- 可选的系统托盘支持 ---------------------------------------------------
+# 用 `cargo build --features tray` 启用；关闭时 `tray.rs` 编译为 no-op stub，
+# 这两个依赖完全不参与构建，因此无桌面依赖的环境也能编译。
+#
+# 版本说明：tray-icon 0.21 依赖 muda 0.17 并在 `tray_icon::menu` 下重导出其菜单类型，
+# 两者需成对升级。
+tray-icon = { version = "0.21", optional = true }
+muda = { version = "0.17", optional = true }
+
+[features]
+default = []
+tray = ["dep:tray-icon", "dep:muda"]
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
