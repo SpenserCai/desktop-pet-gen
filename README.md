@@ -238,5 +238,6 @@ desktop-pet-gen/
 
 [MIT](LICENSE) © SpenserCai
 
-第三方模型（U^2-Net、RMBG-2.0）由 `scripts/fetch_models.py` 按需下载，不随本仓库分发，
-其许可条款见 [LICENSE](LICENSE) 末尾的第三方声明 —— 特别注意 **RMBG-2.0 对商业使用有限制**。
+第三方模型（U^2-Net、RMBG-2.0）由 `scripts/fetch_models.py` 按需下载，不随本仓库分发。
+其许可条款、AI 生成素材的权利归属见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
+—— 特别注意 **RMBG-2.0 对商业使用有限制**。

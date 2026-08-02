@@ -19,19 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-Third-party notices
-
-This project downloads (but does not redistribute) the following models at
-runtime via `scripts/fetch_models.py`. Their licenses apply to the downloaded
-files, not to this repository:
-
-- U^2-Net (`AI-ModelScope/u2net`) — Apache-2.0, © the U^2-Net authors.
-- RMBG-2.0 (`AI-ModelScope/RMBG-2.0`) — see the model card on ModelScope for
-  its license terms, which restrict commercial use.
-
-Generated pet projects embed the Rust runtime template under `pet-runtime/`,
-which is covered by this MIT license. Sprite assets produced by third-party
-AI services are subject to those services' terms.

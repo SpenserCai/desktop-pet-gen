@@ -15,6 +15,13 @@ updates:
     open-pull-requests-limit: 5
     commit-message:
       prefix: "chore(deps)"
+    groups:
+      # tray-icon 与 muda 必须成对升级：tray-icon 依赖特定 muda 版本并在
+      # `tray_icon::menu` 下重导出其类型，单独升 muda 会编译失败。
+      tray:
+        patterns:
+          - tray-icon
+          - muda
     # Bevy 大版本升级涉及大量 API 变更（见 docs/standards/RUNTIME_UX.md 的坐标系约定），
     # 只接受同一大版本内的更新，主版本升级手工做。
     ignore:
