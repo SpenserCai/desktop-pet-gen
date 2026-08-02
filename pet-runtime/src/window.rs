@@ -54,6 +54,11 @@ pub fn window_plugin() -> WindowPlugin {
             resolution: (WINDOW_SIZE as u32, WINDOW_SIZE as u32).into(),
             // Prevent the window from appearing in the taskbar / dock.
             skip_taskbar: true,
+            // macOS derives the window's drop shadow from the alpha silhouette and
+            // *caches* it. Our silhouette changes every frame, so the stale shadow of
+            // an earlier pose stays on screen as a grey outline ("ghosting"). Bevy
+            // defaults this to `true`; an overlay pet must switch it off.
+            has_shadow: false,
             // Transparent windows require platform-specific alpha compositing
             // (official Bevy `transparent_window` example recipe).
             #[cfg(target_os = "macos")]
@@ -177,6 +182,21 @@ fn track_window_moved(mut moved: MessageReader<WindowMoved>, mut anchor: ResMut<
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn primary_window_is_a_shadowless_transparent_overlay() {
+        // Regression guard: macOS caches the drop shadow computed from the window's
+        // alpha silhouette. With `has_shadow: true` (Bevy's default) the shadow of an
+        // earlier animation frame lingers on screen as a grey outline around the pet.
+        let window = window_plugin()
+            .primary_window
+            .expect("window_plugin must configure a primary window");
+        assert!(!window.has_shadow, "overlay window must not cast a shadow");
+        assert!(window.transparent, "overlay window must be transparent");
+        assert!(!window.decorations, "overlay window must be borderless");
+        assert!(window.skip_taskbar, "pet must stay out of the taskbar/dock");
+        assert_eq!(window.window_level, WindowLevel::AlwaysOnTop);
+    }
 
     #[test]
     fn initial_position_is_inset_from_bottom_right() {
