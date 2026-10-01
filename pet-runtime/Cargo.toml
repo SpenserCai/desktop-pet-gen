@@ -19,8 +19,8 @@ image = "0.25"
 #
 # 版本说明：tray-icon 0.21 依赖 muda 0.17 并在 `tray_icon::menu` 下重导出其菜单类型，
 # 两者需成对升级。
-tray-icon = { version = "0.24", optional = true }
-muda = { version = "0.19", optional = true }
+tray-icon = { version = "0.25", optional = true }
+muda = { version = "0.20", optional = true }
 
 [features]
 default = []
